@@ -8,7 +8,7 @@ Java, JavaScript, React.js, MySQL<br>
 Главная страница:<br>
 <img src="https://github.com/ivanbazhko/AirportProject/blob/master/Mockups/MainPage.png">
 Страница авторизации:<br>
-<img src="https://github.com/ivanbazhko/AirportProject/blob/master/Mockups/Search.png">
-Страница поиска:<br>
 <img src="https://github.com/ivanbazhko/AirportProject/blob/master/Mockups/SignIn.png">
+Страница поиска:<br>
+<img src="https://github.com/ivanbazhko/AirportProject/blob/master/Mockups/Search.png">
 <hr>
