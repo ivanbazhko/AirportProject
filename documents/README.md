@@ -23,5 +23,5 @@ Java, JavaScript, React.js<br>
 Страница авторизации:<br>
 <img src="https://github.com/ivanbazhko/AirportProject/blob/master/documents/Mockups/SignIn.png">
 Страница поиска:<br>
-<img src="https://github.com/ivanbazhko/AirportProject/blob/master/documents/Mockups/Mockups/Search.png">
+<img src="https://github.com/ivanbazhko/AirportProject/blob/master/documents/Mockups/Search.png">
 <hr>
