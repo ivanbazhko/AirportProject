@@ -20,8 +20,14 @@ Java, JavaScript, React.js<br>
 <h3>Mockups:</h3>
 Главная страница:<br>
 <img src="https://github.com/ivanbazhko/AirportProject/blob/master/documents/Mockups/MainPage.png">
-Страница авторизации:<br>
-<img src="https://github.com/ivanbazhko/AirportProject/blob/master/documents/Mockups/SignIn.png">
+Страница регистрации:<br>
+<img src="https://github.com/ivanbazhko/AirportProject/blob/master/documents/Mockups/SignUp.png">
 Страница поиска:<br>
 <img src="https://github.com/ivanbazhko/AirportProject/blob/master/documents/Mockups/Search.png">
+Страница рейсов:<br>
+<img src="https://github.com/ivanbazhko/AirportProject/blob/master/documents/Mockups/Flights.png">
+Страница бронирования:<br>
+<img src="https://github.com/ivanbazhko/AirportProject/blob/master/documents/Mockups/Booking.png">
+Страница создания рейса:<br>
+<img src="https://github.com/ivanbazhko/AirportProject/blob/master/documents/Mockups/NewFlight.png">
 <hr>
