@@ -1,2 +1,2 @@
-airport\src\img*.jpg
+airport/src/img/*.jpg
 airport/node_modules/
