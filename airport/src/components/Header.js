@@ -27,9 +27,10 @@ export default function Header() {
         </span>
         <ul className='nav'>
           <li><Link to="/" style={{ textDecoration: 'none', color: 'white' }}>Main Page</Link></li>
-          <li>Account</li>
+          <li><Link to="/account" style={{ textDecoration: 'none', color: 'white' }}>Account</Link></li>
           <li><Link to="/flights" style={{ textDecoration: 'none', color: 'white' }}>Our Flights</Link></li>
-          <li onClick={getFlights}>About</li>
+          <li><Link to="/about" style={{ textDecoration: 'none', color: 'white' }}>About</Link></li>
+          {/* <li onClick={getFlights}>About</li> */}
         </ul>
       </div>
     </header>
