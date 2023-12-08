@@ -44,14 +44,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/AlpinoMini/AlpinoContests",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/airportProject/server&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.example.LabsM.jpa" />
@@ -63,7 +63,7 @@
       <recent name="com.example.LabsM.jpa.model" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ControllerTest">
+  <component name="RunManager" selected="Application.LabsMApplication">
     <configuration name="LabsMApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.LabsM.LabsMApplication" />
       <module name="LabsM" />
@@ -138,7 +138,7 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.LabsM.service.*" />
-          <option name="ENABLED" value="false" />
+          <option name="ENABLED" value="true" />
         </pattern>
         <pattern>
           <option name="PATTERN" value="com.example.LabsM.service.TriangleService" />

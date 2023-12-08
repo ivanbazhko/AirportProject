@@ -3,7 +3,7 @@ package com.example.LabsM.entity;
 public class Booking {
     private User user;
     private Flight flight;
-    private Integer[] date;
+    private String date;
 
     public User getUser() {
         return user;
@@ -21,15 +21,15 @@ public class Booking {
         this.flight = flight;
     }
 
-    public Integer[] getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Integer[] date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Booking(User user, Flight flight, Integer[] date) {
+    public Booking(User user, Flight flight, String date) {
         this.user = user;
         this.flight = flight;
         this.date = date;

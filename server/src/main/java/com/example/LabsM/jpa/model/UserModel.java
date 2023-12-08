@@ -13,6 +13,8 @@ public class UserModel {
     private String name;
     @Column(name = "password")
     private String password;
+    @Column(name = "isadmin")
+    private Boolean isadmin;
 
     public Integer getId() {
         return id;
@@ -30,6 +32,10 @@ public class UserModel {
         this.name = name;
     }
 
+    public Boolean getIsadmin() {
+        return isadmin;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -38,14 +44,22 @@ public class UserModel {
         this.password = password;
     }
 
+    public UserModel() {
+        this.id = 0;
+        this.name = "";
+        this.password = "";
+        this.isadmin = Boolean.FALSE;
+    }
     public UserModel(Integer id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;
+        this.isadmin = Boolean.FALSE;
     }
 
     public UserModel(String name, String password) {
         this.name = name;
         this.password = password;
+        this.isadmin = Boolean.FALSE;
     }
 }

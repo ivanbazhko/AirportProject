@@ -91,7 +91,8 @@ public class FlightModel {
         this.number = number;
     }
 
-    public FlightModel(Integer id, Integer originid, Integer destinationid, Integer airlineid, Integer airplaneid, String days, String time, Integer number) {
+    public FlightModel(Integer id, Integer originid, Integer destinationid, Integer airlineid,
+                       Integer airplaneid, String days, String time, Integer number) {
         this.id = id;
         this.originid = originid;
         this.destinationid = destinationid;
@@ -102,7 +103,8 @@ public class FlightModel {
         this.number = number;
     }
 
-    public FlightModel(Integer originid, Integer destinationid, Integer airlineid, Integer airplaneid, String days, String time, Integer number) {
+    public FlightModel(Integer originid, Integer destinationid, Integer airlineid,
+                       Integer airplaneid, String days, String time, Integer number) {
         this.originid = originid;
         this.destinationid = destinationid;
         this.airlineid = airlineid;

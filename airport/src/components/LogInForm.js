@@ -1,4 +1,32 @@
 import React, { useState } from 'react';
+import axios from 'axios'
+import bcrypt from 'bcryptjs';
+
+const makeRequest = (name, password, rawpassword) => {
+    const params = {
+        email: name,
+        password: password,
+    };
+
+    axios.get('http://localhost:8080/api/airport/adduser', { params })
+        .then(response => {
+            if(!response.data[0]) {
+                console.log("BOO");
+                console.log(rawpassword);
+                console.log(response.data[1]);
+                const isMatch = bcrypt.compareSync(rawpassword, response.data[1]);
+                if(isMatch) {
+                    console.log("Right!");
+                } else {
+                    console.log("Wrong!");
+                }
+            }
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
 
 const LoginForm = () => {
     const [loginData, setLoginData] = useState({
@@ -29,12 +57,15 @@ const LoginForm = () => {
 
         if (!emailError && !passwordError) {
             console.log('Logging in:', loginData);
+            const salt = bcrypt.genSaltSync(10);
+            const hashedPassword = bcrypt.hashSync(loginData.password, salt);
+            makeRequest(loginData.email, hashedPassword, loginData.password);
         };
     };
 
     const isValidEmail = (email) => {
         console.log(email.length);
-        if(email.length == 0) return true
+        if (email.length == 0) return true
         const regex = /^(([^<>()[\]\\.,;:\s@"]+)@([a-zA-Z0-9-]+).([a-zA-Z]{2,}))$/;
         return !regex.test(email);
     };

@@ -5,11 +5,12 @@ public class Flight {
     private Airport destination;
     private Airline airline;
     private Airplane airplane;
-    private Boolean[] days;
-    private Integer[] time;
+    private String days;
+    private String time;
     private Integer number;
 
-    public Flight(Airport origin, Airport destination, Airline airline, Airplane airplane, Boolean[] days, Integer[] time, Integer number) {
+    public Flight(Airport origin, Airport destination, Airline airline, Airplane airplane, String days,
+                  String time, Integer number) {
         this.origin = origin;
         this.destination = destination;
         this.airline = airline;
@@ -51,19 +52,19 @@ public class Flight {
         this.airplane = airplane;
     }
 
-    public Boolean[] getDays() {
+    public String getDays() {
         return days;
     }
 
-    public void setDays(Boolean[] days) {
+    public void setDays(String days) {
         this.days = days;
     }
 
-    public Integer[] getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Integer[] time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

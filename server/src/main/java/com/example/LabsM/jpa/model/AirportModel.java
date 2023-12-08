@@ -17,6 +17,14 @@ public class AirportModel {
     private Float coord1;
     private Float coord2;
 
+    public AirportModel() {
+        this.id = 0;
+        this.name = "";
+        this.country = "";
+        this.coord1 = (float)0;
+        this.coord2 = (float)0;
+    }
+
     public AirportModel(Integer id, String name, String country, Float coord1, Float coord2) {
         this.id = id;
         this.name = name;
