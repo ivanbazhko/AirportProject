@@ -3,13 +3,12 @@ import axios from 'axios'
 import bcrypt from 'bcryptjs';
 import { useContext } from 'react';
 import { AuthContext } from './AuthComponent';
-import { useNavigate } from 'react-router-dom';
 
 const makeRequest = (name, password, rawpassword) => {
     const params = {
         email: name,
         password: password,
-        login: 1,
+        login: 0,
     };
     return new Promise((resolve, reject) => {
         axios.get('http://localhost:8080/api/airport/adduser', { params })
@@ -24,8 +23,7 @@ const makeRequest = (name, password, rawpassword) => {
     });
 };
 
-const LoginForm = () => {
-    const navigate = useNavigate();
+const SignUpForm = () => {
     const{ user, setUser } = useContext(AuthContext)
     if(!user) console.log("Not logged")
     
@@ -56,30 +54,24 @@ const LoginForm = () => {
         });
 
         if (!emailError && !passwordError) {
-            console.log('Logging in:', loginData);
+            console.log('Signing up:', loginData);
             const salt = bcrypt.genSaltSync(10);
             const hashedPassword = bcrypt.hashSync(loginData.password, salt);
             makeRequest(loginData.email, hashedPassword, loginData.password)
                 .then(data => {
                     console.log("Request successful:", data);
-                    if (data[4]) {
+                    if (!data[4]) {
                         setErrors({
-                            email: 'User does not exist',
+                            email: 'User with this e-mail already exists',
                             password: '',
                         });
-                    } else if(!data.isMatch) {
-                        setErrors({
-                            email: '',
-                            password: 'Invalid password',
-                        });
-                    } else{ 
+                    } else {
                         console.log(data);
                         setUser({
                             email: data[0],
                             id: data[1],
                             isAdmin: data[3]
                         })
-                        navigate("/");
                     }
                 })
                 .catch(error => {
@@ -98,7 +90,7 @@ const LoginForm = () => {
     return (
         <div className="login-form">
             <div className='login-form-header'>
-                <h2 className='login-form-title'>Log In</h2>
+                <h2 className='login-form-title'>Sign Up</h2>
             </div>
 
             <form className="login-form-body">
@@ -117,11 +109,11 @@ const LoginForm = () => {
                 </div>
 
                 <button className="login-button" type="submit" onClick={handleSubmit}>
-                    Log In
+                    Sign Up
                 </button>
             </form>
         </div>
     );
 };
 
-export default LoginForm;
+export default SignUpForm;

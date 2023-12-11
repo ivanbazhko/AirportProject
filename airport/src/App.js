@@ -6,6 +6,7 @@ import FlightsPage from './components/FlightsPage';
 import MainPage from './components/MainPage';
 import AccountPage from './components/AccountPage';
 import AboutPage from './components/AboutPage';
+import AirportForm from './components/AirportForm.js';
 
 function App() {
   return (

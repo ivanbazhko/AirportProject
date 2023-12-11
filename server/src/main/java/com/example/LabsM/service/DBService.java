@@ -8,29 +8,30 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 @Service
 public class DBService {
     private AirlineJpaRepository airlineRepository;
-    private AirplaneJpaRepository airplaneRepository;
     private AirportJpaRepository airportRepository;
     private BookingJpaRepository bookingRepository;
     private FlightJpaRepository flightRepository;
     private UserJpaRepository userRepository;
     public DBService(AirlineJpaRepository airlineRepository,
-                     AirplaneJpaRepository airplaneRepository,
                      AirportJpaRepository airportRepository,
                      BookingJpaRepository bookingRepository,
                      FlightJpaRepository flightRepository,
                      UserJpaRepository userRepository) {
         this.airlineRepository = airlineRepository;
-        this.airplaneRepository = airplaneRepository;
         this.airportRepository = airportRepository;
         this.bookingRepository = bookingRepository;
         this.flightRepository = flightRepository;
         this.userRepository = userRepository;
     }
     ////////////////////////////////////////////////////////////////////////////
-    public void saveOneAirline(String name, String code, byte[] logo) {
+    public void saveOneAirline(String name, String code, String logo) {
         AirlineModel model = new AirlineModel(name, code, logo);
         airlineRepository.save(model);
     }
@@ -52,45 +53,15 @@ public class DBService {
         });
         return result;
     }
+    public void deleteAirline(Integer airlineId) {
+        airlineRepository.deleteById(airlineId);
+    }
     public Integer getAirlineId(String name) {
         List<AirlineModel> allAirlines = getAllAirlinesWithId();
         Integer result = -1;
         for(int i = 0; i < allAirlines.size(); i++) {
             if(allAirlines.get(i).getName().equals(name)) {
                 result = allAirlines.get(i).getId();
-            }
-        };
-        return result;
-    }
-    ////////////////////////////////////////////////////////////////////////////
-    public void saveOneAirplane(String name, Integer speed, Integer capeco, Integer capbus, Integer capfir) {
-        AirplaneModel model = new AirplaneModel(name, speed, capeco, capbus, capfir);
-        airplaneRepository.save(model);
-    }
-    public List<AirplaneModel> getAllAirplanesWithId() {
-        List<AirplaneModel> result = new ArrayList<>();
-        airplaneRepository.findAll().forEach(a -> {
-            result.add(a);
-        });
-        return result;
-    }
-    public AirplaneModel getAirplaneWithId(Integer id) {
-        AirplaneModel result = airplaneRepository.findById(id).get();
-        return result;
-    }
-    public List<Airplane> getAllAirplanes() {
-        List<Airplane> result = new ArrayList<>();
-        airplaneRepository.findAll().forEach(a -> {
-            result.add(new Airplane(a.getName(), a.getSpeed(), a.getCapeco(), a.getCapbus(), a.getCapfir()));
-        });
-        return result;
-    }
-    public Integer getAirplaneId(String name) {
-        List<AirplaneModel> allAirplanes = getAllAirplanesWithId();
-        Integer result = -1;
-        for(int i = 0; i < allAirplanes.size(); i++) {
-            if(allAirplanes.get(i).getName().equals(name)) {
-                result = allAirplanes.get(i).getId();
             }
         };
         return result;
@@ -117,6 +88,9 @@ public class DBService {
             result.add(new Airport(a.getName(), a.getCountry(), a.getCoord1(), a.getCoord2()));
         });
         return result;
+    }
+    public void deleteAirport(Integer airportId) {
+        airportRepository.deleteById(airportId);
     }
     public Integer getAirportId(String country) {
         List<AirportModel> allAirports = getAllAirportsWithId();
@@ -162,7 +136,7 @@ public class DBService {
         return result;
     }
     ////////////////////////////////////////////////////////////////////////////
-    public void saveOneBooking(Integer userid, Integer flightid, String date) {
+    public void saveOneBooking(String userid, String flightid, String date) {
         BookingModel model = new BookingModel(userid, flightid, date);
         bookingRepository.save(model);
     }
@@ -177,18 +151,52 @@ public class DBService {
         BookingModel result = bookingRepository.findById(id).get();
         return result;
     }
-    public List<Booking> getAllBooking() {
-        List<Booking> result = new ArrayList<>();
-        bookingRepository.findAll().forEach(a -> {
-            result.add(new Booking(getAllUsers().get(a.getUserid()), getAllFlights().get(a.getFlightid()), a.getDate()));
-        });
+//    public List<Booking> getAllBooking() {
+//        List<Booking> result = new ArrayList<>();
+//        bookingRepository.findAll().forEach(a -> {
+//            result.add(new Booking(getAllUsers().get(a.getUserid()), getAllFlights().get(a.getFlightid()), a.getDate()));
+//        });
+//        return result;
+//    }
+    public Flight getForBooking(String destination, Integer amount, String date) {
+
+        // Parse the date string to a LocalDate object
+        LocalDate wdate = LocalDate.parse(date, DateTimeFormatter.ISO_DATE);
+
+        // Get the day of the week
+        DayOfWeek dayOfWeek = wdate.getDayOfWeek();
+
+        // Print the day of the week
+        System.out.println(dayOfWeek.name()); // Prints: THURSDAY
+        System.out.println(dayOfWeek.getValue());
+
+        String lop = "12347";
+
+        if(lop.contains(String.valueOf(dayOfWeek.getValue()))) {
+            System.out.println("YAY");
+        }
+
+        Integer yes = 0;
+
+
+        List<Flight> flights = getAllFlights();
+        for(int i = 0; i < flights.size(); i++) {
+            if(flights.get(i).getDestination().getCountry().equals(destination)) {
+                if (flights.get(i).getDays().contains(String.valueOf(dayOfWeek.getValue()))) {
+                    yes = i;
+                    break;
+                }
+            }
+        }
+        Flight result = flights.get(yes);
         return result;
     }
+
     ////////////////////////////////////////////////////////////////////////////
-    public void saveOneFlight(String origin, String destination, String airline,
+    public void saveOneFlight(String destination, String airline,
                               String airplane, String days, String time, Integer number) {
-        FlightModel model = new FlightModel(getAirportId(origin), getAirportId(destination),
-                getAirlineId(airline), getAirplaneId(airplane), days, time, number);
+        FlightModel model = new FlightModel(getAirportId(destination),
+                getAirlineId(airline), airplane, days, time, number);
         flightRepository.save(model);
     }
     public List<FlightModel> getAllFlightsWithId() {
@@ -202,13 +210,48 @@ public class DBService {
         FlightModel result = flightRepository.findById(id).get();
         return result;
     }
+    public List<Object> getAllFlightsForDisplay() {
+        List<Object> result = new ArrayList<>();
+        return result;
+    }
+    public Integer getFlightByNumber(String airline, Integer number) {
+        List<FlightModel> allFlights = flightRepository.findAll();
+        Integer result = -1;
+        for(int i = 0; i < allFlights.size(); i++) {
+            if(getAirlineWithId(allFlights.get(i).getAirlineid()).getName().equals(airline) &&
+            allFlights.get(i).getNumber().equals(number)) {
+                result = allFlights.get(i).getId();
+                break;
+            }
+        }
+        return result;
+    }
     public List<Flight> getAllFlights() {
         List<Flight> result = new ArrayList<>();
         flightRepository.findAll().forEach(a -> {
-            result.add(new Flight(getAllAirports().get(a.getOriginid()), getAllAirports().get(a.getDestinationid()),
-                    getAllAirlines().get(a.getAirplaneid()), getAllAirplanes().get(a.getAirplaneid()), a.getDays(),
+            List<Airport> airports = getAllAirports();
+            List<Airline> airlines = getAllAirlines();
+            Integer airportId = -1;
+            Integer airlineId = -1;
+            for(int i = 0; i < airports.size(); i++) {
+                if(getAirportId(airports.get(i).getCountry()).equals(a.getDestinationid())) {
+                    airportId = i;
+                    break;
+                }
+            }
+            for(int i = 0; i < airlines.size(); i++) {
+                if(getAirlineId(airlines.get(i).getName()).equals(a.getAirlineid())) {
+                    airlineId = i;
+                    break;
+                }
+            }
+            result.add(new Flight(getAllAirports().get(airportId),
+                    getAllAirlines().get(airlineId), a.getAirplaneid(), a.getDays(),
                     a.getTime(), a.getNumber()));
         });
         return result;
+    }
+    public void deleteFlight(Integer id) {
+        flightRepository.deleteById(id);
     }
 }

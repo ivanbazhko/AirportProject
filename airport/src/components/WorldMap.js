@@ -42,8 +42,8 @@ export default function WorldMap() {
   };
 
   const checkState = () => {
-    console.log(coords);
-    console.log(homes);
+    // console.log(coords);
+    // console.log(homes);
   }
 
   useEffect(() => {

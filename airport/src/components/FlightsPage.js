@@ -4,30 +4,43 @@ import WorldMap from './WorldMap.js'
 
 export default function FlightsPage() {
 
-  const [flights, setFlights] = useState([]);
+  // const [flights, setFlights] = useState([]);
 
-  const getFlights = () => {
-    axios
-      .get('http://localhost:8080/api/alpinomini/viewhistory')
-      .then(response => {
-        console.log("qwertyuiopasdfghjklzxcvbnm")
-        const years = response.data.map(item => item.year);
-        console.log(years);
-        setFlights(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  };
+  // const getFlights = () => {
+  //   axios
+  //     .get('http://localhost:8080/api/airport/flights')
+  //     .then(response => {
+  //       setFlights(response.data.map(item => item));
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // };
+
+  // const checkState = () => {
+  //   console.log(flights);
+  // }
+
+  // useEffect(() => {
+  //   getFlights();
+  // }, []);
+
+  // useEffect(() => {
+  //   checkState();
+  // }, [flights]);
 
   return (
     <div className="flcontainer">
       <div className="flleft-div">
         <WorldMap />
       </div>
-      <div className="flright-div">
-        This is the content of the right div.
-      </div>
+      {/* <div className="flright-div">
+        {flights.map((flight) => (
+          <div className="one-flight">
+            {flight.destination}, {flight.country}
+          </div>
+        ))}
+      </div> */}
     </div>
   )
 }

@@ -12,9 +12,9 @@ public class BookingModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "userid")
-    private Integer userid;
+    private String userid;
     @Column(name = "flightid")
-    private Integer flightid;
+    private String flightid;
     @Column(name = "date")
     private String date;
 
@@ -26,19 +26,19 @@ public class BookingModel {
         this.id = id;
     }
 
-    public Integer getUserid() {
+    public String getUserid() {
         return userid;
     }
 
-    public void setUserid(Integer userid) {
+    public void setUserid(String userid) {
         this.userid = userid;
     }
 
-    public Integer getFlightid() {
+    public String getFlightid() {
         return flightid;
     }
 
-    public void setFlightid(Integer flightid) {
+    public void setFlightid(String flightid) {
         this.flightid = flightid;
     }
 
@@ -50,16 +50,22 @@ public class BookingModel {
         this.date = date;
     }
 
-    public BookingModel(Integer id, Integer userid, Integer flightid, String date) {
+    public BookingModel(Integer id, String userid, String flightid, String date) {
         this.id = id;
         this.userid = userid;
         this.flightid = flightid;
         this.date = date;
     }
 
-    public BookingModel(Integer userid, Integer flightid, String date) {
+    public BookingModel(String userid, String flightid, String date) {
         this.userid = userid;
         this.flightid = flightid;
         this.date = date;
+    }
+
+    public BookingModel() {
+        this.userid = "";
+        this.flightid = "";
+        this.date = "";
     }
 }

@@ -1,17 +1,15 @@
 package com.example.LabsM.entity;
 
 public class Flight {
-    private Airport origin;
     private Airport destination;
     private Airline airline;
-    private Airplane airplane;
+    private String airplane;
     private String days;
     private String time;
     private Integer number;
 
-    public Flight(Airport origin, Airport destination, Airline airline, Airplane airplane, String days,
+    public Flight(Airport destination, Airline airline, String airplane, String days,
                   String time, Integer number) {
-        this.origin = origin;
         this.destination = destination;
         this.airline = airline;
         this.airplane = airplane;
@@ -20,12 +18,13 @@ public class Flight {
         this.number = number;
     }
 
-    public Airport getOrigin() {
-        return origin;
-    }
-
-    public void setOrigin(Airport origin) {
-        this.origin = origin;
+    public Flight() {
+        this.destination = null;
+        this.airline = null;
+        this.airplane = "";
+        this.days = "";
+        this.time = "";
+        this.number = -1;
     }
 
     public Airport getDestination() {
@@ -44,11 +43,11 @@ public class Flight {
         this.airline = airline;
     }
 
-    public Airplane getAirplane() {
+    public String getAirplane() {
         return airplane;
     }
 
-    public void setAirplane(Airplane airplane) {
+    public void setAirplane(String airplane) {
         this.airplane = airplane;
     }
 

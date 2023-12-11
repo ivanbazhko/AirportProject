@@ -14,16 +14,23 @@ public class AirlineModel {
     @Column(name = "code")
     private String code;
     @Column(name = "logo")
-    private byte[] logo;
+    private String logo;
 
-    public AirlineModel(Integer id, String name, String code, byte[] logo) {
+    public AirlineModel(Integer id, String name, String code, String logo) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.logo = logo;
     }
 
-    public AirlineModel(String name, String code, byte[] logo) {
+    public AirlineModel() {
+        this.id = 0;
+        this.name = "";
+        this.code = "";
+        this.logo = "";
+    }
+
+    public AirlineModel(String name, String code, String logo) {
         this.name = name;
         this.code = code;
         this.logo = logo;
@@ -53,11 +60,11 @@ public class AirlineModel {
         this.code = code;
     }
 
-    public byte[] getLogo() {
+    public String getLogo() {
         return logo;
     }
 
-    public void setLogo(byte[] logo) {
+    public void setLogo(String logo) {
         this.logo = logo;
     }
 }

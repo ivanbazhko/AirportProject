@@ -1,8 +1,5 @@
 package com.example.LabsM.jpa.model;
 
-import com.example.LabsM.entity.Airline;
-import com.example.LabsM.entity.Airplane;
-import com.example.LabsM.entity.Airport;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,14 +9,12 @@ public class FlightModel {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "originid")
-    private Integer originid;
     @Column(name = "destinationid")
     private Integer destinationid;
     @Column(name = "airlineid")
     private Integer airlineid;
     @Column(name = "airplaneid")
-    private Integer airplaneid;
+    private String airplaneid;
     @Column(name = "days")
     private String days;
     @Column(name = "time")
@@ -33,14 +28,6 @@ public class FlightModel {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getOriginid() {
-        return originid;
-    }
-
-    public void setOriginid(Integer originid) {
-        this.originid = originid;
     }
 
     public Integer getDestinationid() {
@@ -59,11 +46,11 @@ public class FlightModel {
         this.airlineid = airlineid;
     }
 
-    public Integer getAirplaneid() {
+    public String getAirplaneid() {
         return airplaneid;
     }
 
-    public void setAirplaneid(Integer airplaneid) {
+    public void setAirplaneid(String airplaneid) {
         this.airplaneid = airplaneid;
     }
 
@@ -91,10 +78,19 @@ public class FlightModel {
         this.number = number;
     }
 
-    public FlightModel(Integer id, Integer originid, Integer destinationid, Integer airlineid,
-                       Integer airplaneid, String days, String time, Integer number) {
+    public FlightModel() {
+        this.id = -1;
+        this.destinationid = -1;
+        this.airlineid = -1;
+        this.airplaneid = "";
+        this.days = "";
+        this.time = "";
+        this.number = -1;
+    }
+
+    public FlightModel(Integer id, Integer destinationid, Integer airlineid,
+                       String airplaneid, String days, String time, Integer number) {
         this.id = id;
-        this.originid = originid;
         this.destinationid = destinationid;
         this.airlineid = airlineid;
         this.airplaneid = airplaneid;
@@ -103,9 +99,8 @@ public class FlightModel {
         this.number = number;
     }
 
-    public FlightModel(Integer originid, Integer destinationid, Integer airlineid,
-                       Integer airplaneid, String days, String time, Integer number) {
-        this.originid = originid;
+    public FlightModel(Integer destinationid, Integer airlineid,
+                       String airplaneid, String days, String time, Integer number) {
         this.destinationid = destinationid;
         this.airlineid = airlineid;
         this.airplaneid = airplaneid;

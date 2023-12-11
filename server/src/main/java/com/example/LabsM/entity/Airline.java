@@ -3,7 +3,7 @@ package com.example.LabsM.entity;
 public class Airline {
     private String name;
     private String code;
-    private byte[] logo;
+    private String logo;
 
     public String getName() {
         return name;
@@ -21,15 +21,15 @@ public class Airline {
         this.code = code;
     }
 
-    public byte[] getLogo() {
+    public String getLogo() {
         return logo;
     }
 
-    public void setLogo(byte[] logo) {
+    public void setLogo(String logo) {
         this.logo = logo;
     }
 
-    public Airline(String name, String code, byte[] logo) {
+    public Airline(String name, String code,String logo) {
         this.name = name;
         this.code = code;
         this.logo = logo;
