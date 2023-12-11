@@ -116,8 +116,6 @@ const BookingForm = () => {
                 };
                 if (data[1]) {
                     setBookingForm(false);
-                    console.log(tta);
-                    yu += tta;
                     setSearch(true);
                 }
             })
@@ -129,8 +127,12 @@ const BookingForm = () => {
 
     const handleBookSubmit = (event) => {
         event.preventDefault();
-        makeBookingRequest(user.email, code, number, bookingData.date).then(data => {
-        });
+        if (user) {
+            makeBookingRequest(user.email, code, number, bookingData.date).then(data => {
+            });
+        }
+        setBookingForm(true);
+        setSearch(false);
     };
 
     const isValidDate = (dateString) => {
