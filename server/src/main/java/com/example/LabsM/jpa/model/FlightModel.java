@@ -22,6 +22,28 @@ public class FlightModel {
     @Column(name = "number")
     private Integer number;
 
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    @Column(name = "price")
+    private Float price;
+
+    public Integer getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(Integer origin) {
+        this.origin = origin;
+    }
+
+    @Column(name = "origin")
+    private Integer origin;
+
     public Integer getId() {
         return id;
     }
@@ -86,10 +108,12 @@ public class FlightModel {
         this.days = "";
         this.time = "";
         this.number = -1;
+        this.origin = 1;
+        this.price = (float)0;
     }
 
     public FlightModel(Integer id, Integer destinationid, Integer airlineid,
-                       String airplaneid, String days, String time, Integer number) {
+                       String airplaneid, String days, String time, Integer number, Integer origin, Float price) {
         this.id = id;
         this.destinationid = destinationid;
         this.airlineid = airlineid;
@@ -97,15 +121,19 @@ public class FlightModel {
         this.days = days;
         this.time = time;
         this.number = number;
+        this.origin = origin;
+        this.price = price;
     }
 
     public FlightModel(Integer destinationid, Integer airlineid,
-                       String airplaneid, String days, String time, Integer number) {
+                       String airplaneid, String days, String time, Integer number, Integer origin, Float price) {
         this.destinationid = destinationid;
         this.airlineid = airlineid;
         this.airplaneid = airplaneid;
         this.days = days;
         this.time = time;
         this.number = number;
+        this.origin = origin;
+        this.price = price;
     }
 }

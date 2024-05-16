@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { AuthContext } from './AuthComponent';
 import { useNavigate } from 'react-router-dom';
 
-const makeRequest = (destination, airline, airplane, days, time, number) => {
+const makeRequest = (destination, airline, airplane, days, time, number, origin, price) => {
     const params = {
         destination: destination,
         airline: airline,
@@ -12,8 +12,11 @@ const makeRequest = (destination, airline, airplane, days, time, number) => {
         days: days,
         time: time,
         number: number,
+        origin: origin,
+        price: price,
     };
     return new Promise((resolve, reject) => {
+        console.log("PARAMS: ", params);
         axios.get('http://localhost:8080/api/airport/addflight', { params })
             .then(response => {
                 resolve(response.data);
@@ -35,6 +38,8 @@ const FlightForm = () => {
         days: '',
         time: '',
         number: '',
+        origin: '',
+        price: '',
     });
 
     const [errors, setErrors] = useState({
@@ -44,11 +49,14 @@ const FlightForm = () => {
         days: '',
         time: '',
         number: '',
+        price: '',
     });
 
     const handleChange = (event) => {
+
         const { name, value } = event.target;
         setFlightData({ ...flightData, [name]: value });
+
     };
 
     const handleSubmit = (event) => {
@@ -59,7 +67,7 @@ const FlightForm = () => {
         const isValidNumber = (number) => {
             if (!number) return true;
             if(number <= 999) return true;
-            if(number >= 10000) return true;
+            if(number >= 9999) return true;
             const amountError = !/^\d+$/.test(flightData.number);
             if(amountError) return true;
             return false;
@@ -71,6 +79,7 @@ const FlightForm = () => {
         const daysError = (flightData.days.length > 7 || flightData.days.length <= 0) ? true : false;
         const timeError = flightData.time.length == 0 ? true : false;
         const numberError = isValidNumber(flightData.number);
+        const priceError = flightData.price <= 0 ? true : false;
 
         setErrors({
             destination: destinationError ? 'Please enter a valid destination' : '',
@@ -79,12 +88,20 @@ const FlightForm = () => {
             days: daysError ? 'Please enter the days' : '',
             time: timeError ? 'Please enter the time' : '',
             number: numberError ? 'Please enter a valid number' : '',
+            price: priceError ? 'Please enter a valid price' : '',
         });
 
-        if (!destinationError && !airlineError && !airplaneError && !numberError && !daysError && !timeError) {
+        if (!destinationError && !airlineError && !airplaneError && !numberError && !daysError && !timeError && !priceError) {
             console.log('Adding flight:', flightData);
+            var checkedorigin;
+            var checkbox = document.getElementsByName("origin")[0];
+            if (checkbox.checked) {
+                checkedorigin = -1;
+            } else {
+                checkedorigin = 1;
+            }
             makeRequest(flightData.destination, flightData.airline, flightData.airplane,
-                flightData.days, flightData.time, flightData.number)
+                flightData.days, flightData.time, flightData.number, checkedorigin, flightData.price)
                 .then(data => {
                     console.log("Request successful:", data);
                     if (!data[0]) {
@@ -160,6 +177,20 @@ const FlightForm = () => {
                     <input type="number" id="number" name="number" className="login-input" value={flightData.number}
                         onChange={handleChange} />
                     <span className="error-message">{errors.number}</span>
+                </div>
+
+                <div className='form-field'>
+                    <label className="form-label" htmlFor="latitude">Price:</label>
+                    <input type="number" id="price" name="price" className="login-input" value={flightData.price}
+                        onChange={handleChange} />
+                    <span className="error-message">{errors.price}</span>
+                </div>
+
+                <div className='form-field'>
+                    <label className="form-label">
+                        <input type="checkbox" name="origin" value="1" onChange={handleChange} />
+                        {" Other Origin"}
+                    </label>
                 </div>
 
                 <button className="airp-button" type="submit" onClick={handleSubmit}>

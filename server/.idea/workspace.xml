@@ -54,9 +54,9 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.LabsM.service" />
       <recent name="com.example.LabsM.jpa" />
       <recent name="com.example.LabsM.jpa.model" />
-      <recent name="com.example.LabsM.service" />
       <recent name="com.example.LabsM.validator" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -245,6 +245,9 @@
     <SUITE FILE_PATH="coverage/LabsM$All_in_LabsM.ic" NAME="All in LabsM Coverage Results" MODIFIED="1683911473857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/LabsM$CountServiceTest.ic" NAME="CountServiceTest Coverage Results" MODIFIED="1684724563148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.example.LabsM.service.CountService</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/server$LabsMApplication.ic" NAME="LabsMApplication Coverage Results" MODIFIED="1708086492031" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.example.LabsM.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/LabsM$ValidatorTest.ic" NAME="ValidatorTest Coverage Results" MODIFIED="1684724574088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.example.LabsM.validator.*</FILTER>
